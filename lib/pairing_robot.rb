@@ -9,6 +9,7 @@ def fix_code(e)
   if e.class == NoMethodError
     /undefined method \`(.*)\' for main\:Object/ =~ e.message
     eval "def #{$1}; 'robot method' ; end "
+    # would be cool to have the robot return a description of what it did to solve the error and why ...
   elsif e.class == ArgumentError
     /wrong number of arguments \(given (.*), expected \d\)/ =~ e.message
     num_args = $1.to_i # could use class or arg to auto-infer an approprate name?
